@@ -12,7 +12,7 @@ class Instruction
 
 [array]$Instructions = @()
 (Get-Content .\files\day1input) -split " " | ForEach-Object {
-    $Instructions += $_ #[Instruction]::new($_.Substring(0, 1), [int]$_.Substring(1))
+    $Instructions += $_
 }
 
 # Part 1
@@ -25,25 +25,16 @@ Write-Host "< Day 1 Part 1 >"
 Write-Host "End Frequency:" $Frequency
 Write-Host
 
-<# Part 2
+# Part 2
 
-[array]$FrequenciesReached = @()
+$FrequenciesReached = [System.Collections.Generic.HashSet[int]]::new()
 $Frequency = 0
-$RepeatedFrequency = 0
-$ExitLoop = $false
-while ($ExitLoop -eq $false) # Loop until repeat is found
+$i = 0
+while ($FrequenciesReached.Add($Frequency)) # Loop until repeat is found
 {
         $Frequency += $Instructions[$i++ % $Instructions.Length]
-        if ($FrequenciesReached.Contains($Frequency))
-        {
-            # Repeated frequency found
-            $ExitLoop = $true
-        }
-        $FrequenciesReached += $Frequency
-        Write-Host $Frequency # Debug
 }
 
 Write-Host "< Day 1 Part 2 >"
-Write-Host "Repeated Frequency:" $RepeatedFrequency
+Write-Host "Repeated Frequency:" $Frequency
 Write-Host
-#>
