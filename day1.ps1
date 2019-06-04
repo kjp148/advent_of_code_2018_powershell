@@ -27,10 +27,10 @@ Write-Host
 
 # Part 2
 
-$FrequenciesReached = [System.Collections.Generic.HashSet[int]]::new()
+$FrequenciesReached = [System.Collections.Generic.HashSet[int]]::new() # Must faster than a normal array
 $Frequency = 0
 $i = 0
-while ($FrequenciesReached.Add($Frequency)) # Loop until repeat is found
+while ($FrequenciesReached.Add($Frequency)) # HashSet.Add will return true until repeat is added
 {
         $Frequency += $Instructions[$i++ % $Instructions.Length]
 }
