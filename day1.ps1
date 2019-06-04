@@ -1,15 +1,3 @@
-class Instruction
-{
-    [string]$Sign
-    [int]   $Number
-
-    Instruction ([string]$Sign, [int]$Number)
-    {
-        $this.Sign = $Sign
-        $this.Number = $Number
-    }
-}
-
 [array]$Instructions = @()
 (Get-Content .\files\day1input) -split " " | ForEach-Object {
     $Instructions += $_
